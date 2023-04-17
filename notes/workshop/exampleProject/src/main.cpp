@@ -1,4 +1,6 @@
+#include <iostream>
 #include <map>
+#include <ranges>
 #include <set>
 #include <vector>
 
@@ -8,11 +10,6 @@ concept EmptyConst = requires(PairT p) {
 };
 
 int main(int argc, char *argv[]) {
-  std::vector<int> coll1;
-  std::set<int> coll2;
-  std::map<int, int> myMap;
-  for (EmptyConst auto [key, value] : myMap) {
-  }
-
+  std::vector v{1, 2, 3, 4, 5, 6};
   return 0;
 }
