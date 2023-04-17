@@ -1,0 +1,19 @@
+## Comparisons
+- Implicit inequality operator is introduced
+- implicit type conversion for comparisons is fixed. (now works for both operands)
+- Implicit type conversion should be thought about when you might already have the fixes for the type conversion fixes in place.
+- Compiler checks the comparisons and automatically corrects the order of the comparison. (no need for a hidden friend)
+- Comparison operators can also be defaulted (if it's constant)
+- `<=>` spaceship operator resolves all inequality comparisons.
+- If you default spaceship operator, then you don't need to default or implement equality operator.
+- `auto` in the spaceship operator needs to be thought in terms of the ordering type for your class members. (It might need to be `std::partial_ordering` or `std::strong_ordering`)
+- `std::strong_ordering` can be converted to `std::partial_ordering` but not the other way round.
+- `std::compare_strong_order_fallback()` works without spaceship operator implementations 
+
+## Concepts
+- We use concepts to put constraints on the code (We can also use it directly as a type constraint). The concept is the compile-time boolean value returned from the `requires` call that checks the constraints. Using these constraints we just toggle the visibility of the code at compile-time. 
+- Abbreviated function template syntax (`ABFTS`) is just a function template shorthand.
+- Template parameters come first and then `ABFTS` parameters.
+- Template parameters should only be used if you wanna explicitly specify type names.
+- 
+
