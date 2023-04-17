@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "debug build",
+            "type": "shell",
+            "command": "cd build && rm CMakeCache.txt && cmake .. && make -j$(nproc)"
+        },
+        {
+            "label": "debug run",
+            "type": "shell",
+            "command": "cd build && rm CMakeCache.txt && cmake .. && make -j$(nproc) && ./src/main"
+        }
+    ]
+}

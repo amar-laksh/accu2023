@@ -15,5 +15,10 @@
 - Abbreviated function template syntax (`ABFTS`) is just a function template shorthand.
 - Template parameters come first and then `ABFTS` parameters.
 - Template parameters should only be used if you wanna explicitly specify type names.
+- The requirements parameters should be thought clearly. The requirements should apply to both parameters. 
+- Concepts should be used as broad categories by combining multiple requirements, not fine-grained.
+- QUESTION what about using lambdas inside concept requirements? Using mutual recursion inside concepts? What about structured bindings?
+- Compile time ifs and requires can be very useful for compile-time evaluation.
+- Use ranges::sort since it has more strict requirements (check sortable and its other constraints)
 - 
 
