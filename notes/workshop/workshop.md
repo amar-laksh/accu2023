@@ -53,5 +53,21 @@
 - `std::jthread` have two main advantages: joins automatically, handles exceptions by pausing threads and polling can be done using stop tokens.
 - QUESTION: stop tokens are similar to `nod::signals`?
 - `jthreads` request stop and join automatically.
-- 
-- 
+
+## Concurrency
+- `std::latch` has `arrive_and_wait()` can sync all threads while they run.
+- `atomic_ref` can be used to make values temporarily atomic.
+-  Atomic types now have a notification API. So you don't have to use a conditional variable along with atomic ones to notify and wait.
+- `std::osyncstream` synchronized output streams collect all the output and then flush it at the end on request. This could be useful for debugging applications. All of this is not just synchronized but also collected before flushing. It can also be useful for collecting all output in a scope.
+
+## Module
+- It provides a clear, distinct set of APIs for users also helps incidentally with compile times.
+- ASIDE: learn about explicit instantiation declaration: `extern template`
+
+## Calendars and Time Zones
+- The output operator handles the units and count for `chrono::duration`s.
+- Also, can use it with `std::format`
+- It now supports calendar alias names. (Months, Years etc.)
+- Remember to use `steady_clock` instead of the `system_clock`
+- `clock_cast` is available now.
+
