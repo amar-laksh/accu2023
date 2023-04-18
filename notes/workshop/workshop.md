@@ -71,3 +71,6 @@
 - Remember to use `steady_clock` instead of the `system_clock`
 - `clock_cast` is available now.
 
+## Co-routines
+- `co_await` actually makes a function a co-routine, not the return type.
+- The return type is not a value but a `CoroTask` which is the co-routine interface through which we can interact with the co-routine. It also contains the configuration to deal with the co-routine, to select which kind of co-routine we have.
