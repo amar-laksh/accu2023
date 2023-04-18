@@ -9,6 +9,7 @@
 - `auto` in the spaceship operator needs to be thought in terms of the ordering type for your class members. (It might need to be `std::partial_ordering` or `std::strong_ordering`)
 - `std::strong_ordering` can be converted to `std::partial_ordering` but not the other way round.
 - `std::compare_strong_order_fallback()` works without spaceship operator implementations 
+- ASIDE: use hidden friends instead of freestanding functions for operator implementations.
 
 ## Concepts
 - We use concepts to put constraints on the code (We can also use it directly as a type constraint). The concept is the compile-time boolean value returned from the `requires` call that checks the constraints. Using these constraints we just toggle the visibility of the code for the compiler at compile-time. 
@@ -35,3 +36,22 @@
 - We need to remember that views don't provide expensive functions for efficient calls.
 - We can take advantage of the caching mechanisms for views.
 - Use `bel::views`.
+- Two problems: caching and constant propagation.
+
+## Spans
+- `std::span` is a generalization of the `std::string_view` for basically any pointer.
+- Also, it can be thought of a view. 
+- It provides a range API.
+- Be careful to not use spans when they refer to invalid elements/memory.
+- Again, it follows the rules of pointers.
+- It's good in cases if you need to jump to the nth element. (It has contiguous memory and the iterator is contiguous category)
+- We need to make sure that we are sending compile time type parameters when calling positional methods on span.
+- They don't propagate constants.
+
+## Threads
+-  NOTE: `.join()` is not `noexcept` in `std::thread`.
+- `std::jthread` have two main advantages: joins automatically, handles exceptions by pausing threads and polling can be done using stop tokens.
+- QUESTION: stop tokens are similar to `nod::signals`?
+- `jthreads` request stop and join automatically.
+- 
+- 
