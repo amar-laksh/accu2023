@@ -74,3 +74,8 @@
 ## Co-routines
 - `co_await` actually makes a function a co-routine, not the return type.
 - The return type is not a value but a `CoroTask` which is the co-routine interface through which we can interact with the co-routine. It also contains the configuration to deal with the co-routine, to select which kind of co-routine we have.
+
+## Misc
+- `constexpr` requires compile-time evaluation.
+- `std::is_constant_evaulated()` yields true for the above.
+- `Non-type Template parameter types` are now supported.
