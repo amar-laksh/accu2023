@@ -1,0 +1,5 @@
+- Signature analysis?
+- Indentation charts in `neovim`?
+- Assignment analysis?
+- Refactoring should be minimizing the effort for new features.
+- ASIDE: A `neovim` + `treesitter` tool to do refactoring preprocessing work?
