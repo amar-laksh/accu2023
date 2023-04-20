@@ -1,0 +1,9 @@
+- ASIDE: What's the origins of section names? (`.text?`)
+- dynamic relocations, PLT how does these two really work?
+- `addr2line` (could be really useful) pipe it from `strace`, and then you have a nice `backtrace` with lines numbers.
+- (read only > zero initialized) `.rodata` > `.bss`
+- Add split dwarf instead of just `-g` for lesser time and space.
+- `debuginfod` should be really useful.
+- Look up `Call frame instructions`
+- `.eh_frame` && `.debug_frame` does the `backtrace` now.
+- 
