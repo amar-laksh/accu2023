@@ -6,4 +6,3 @@
 - `debuginfod` should be really useful.
 - Look up `Call frame instructions`
 - `.eh_frame` && `.debug_frame` does the `backtrace` now.
-- 
