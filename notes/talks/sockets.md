@@ -1,0 +1,3 @@
+- Happy eyeballs spec?
+- How we wait should be separate from wait we're waiting for.
+- ASIDE: look up history of `select` and `epoll`.
