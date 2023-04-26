@@ -18,7 +18,7 @@ void print_country(std::vector<UnitedKingdom> const &uk,
   }
 }
 
-void print(auto begin, auto end, std::string const &msg = "") {
+void print(auto begin, auto end, std::string const &msg) {
   if (!msg.empty())
     std::cout << msg << "\n";
   for (auto pos = begin; pos != end; ++pos) {
@@ -26,4 +26,14 @@ void print(auto begin, auto end, std::string const &msg = "") {
   }
   std::cout << '\n';
 }
+
+void print(std::ranges::forward_range auto &range, std::string const &msg) {
+  if (!msg.empty())
+    std::cout << msg << "\n";
+  for (auto v : range) {
+    std::cout << v << ' ';
+  }
+  std::cout << '\n';
+}
+
 }; // namespace helpers
