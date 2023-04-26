@@ -59,8 +59,6 @@ template <auto Val> struct EndValue {
 };
 
 void sentinel_support() {
-  // Whenever you have a range where the end is some dynamic condition instead
-  // of a fixed position, use an iterator and sentinel pair instead.
   std::vector v{3, 2, 1, 4, -1, 6, 5};
   print(v.begin(), v.end(), "unsorted:");
   std::ranges::sort(v);
