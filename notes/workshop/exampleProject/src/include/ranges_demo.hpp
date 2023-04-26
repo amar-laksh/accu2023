@@ -4,6 +4,7 @@
 
 #include "helpers.hpp"
 using namespace helpers;
+
 void concept_errors() {
   std::list<int> list{1, 2, 3, 4};
   // std::sort(list.begin(), list.end());
@@ -50,6 +51,7 @@ void sentinel_support() {
   std::ranges::sort(v.begin(), EndValue<5>{});
   print(v.begin(), v.end(), "sort with sentinel at 5:");
   print(v.begin(), EndValue<5>{}, "printing with sentinel at 5:");
+  // print(v.begin(), EndValue<100>{}, "printing with sentinel at 100:");
   // print(v.begin(), std::unreachable_sentinel);
 }
 
