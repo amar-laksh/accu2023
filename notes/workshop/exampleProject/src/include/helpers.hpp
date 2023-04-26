@@ -1,8 +1,12 @@
 #pragma once
+#include <algorithm>
 #include <iostream>
+#include <list>
+#include <ranges>
 #include <vector>
 
 namespace helpers {
+namespace views = std::views;
 struct UnitedKingdom {
   std::string country;
   int rank;
@@ -27,7 +31,8 @@ void print(auto begin, auto end, std::string const &msg) {
   std::cout << '\n';
 }
 
-void print(std::ranges::forward_range auto &range, std::string const &msg) {
+void print(std::ranges::bidirectional_range auto &range,
+           std::string const &msg) {
   if (!msg.empty())
     std::cout << msg << "\n";
   for (auto v : range) {

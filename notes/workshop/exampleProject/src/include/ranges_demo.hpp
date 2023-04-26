@@ -1,9 +1,6 @@
 #pragma once
-#include <algorithm>
-#include <list>
-#include <ranges>
-
 #include "helpers.hpp"
+
 using namespace helpers;
 
 namespace views = std::ranges::views;
@@ -20,7 +17,6 @@ void motivation() {
   std::transform(begin(evenNumbers), end(evenNumbers),
                  std::back_inserter(results), multiplyBy2);
   print(results.begin(), results.end(), "iterator answer: ");
-
 
   auto result =
       views::iota(1, 5) | views::filter(even) | views::transform(multiplyBy2);
