@@ -4,12 +4,12 @@
         {
             "label": "debug build",
             "type": "shell",
-            "command": "cd build && rm CMakeCache.txt && cmake .. && make -j$(nproc)"
+            "command": "cd build && rm -rf && cmake -GNinja .. && ninja"
         },
         {
             "label": "debug run",
             "type": "shell",
-            "command": "cd build && rm CMakeCache.txt && cmake .. && make -j$(nproc) && ./src/main"
+            "command": "cd build && rm -rf && cmake -GNinja .. && ninja -j18 && ./src/main"
         }
     ]
 }
