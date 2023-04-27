@@ -21,7 +21,7 @@ transform_user(std::variant<std::string, int> name) {
 std::variant<std::string, int>
 monadic_transform_user(std::variant<std::string, int> name) {
   return vbind(vbind(name, concat_prefix), capitalize);
-  // return allbind(name, {concat_prefix, capitalize, decapitalize});
+  // return foldl(vbind, name, {concat_prefix, capitalize, decapitalize});
 }
 
 void variant_monad() {

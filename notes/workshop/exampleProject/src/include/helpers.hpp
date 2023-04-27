@@ -50,8 +50,6 @@ void print_view(std::ranges::view auto &&range, std::string const &msg) {
   std::cout << '\n';
 }
 
-template <typename T> using optional = std::variant<T, int>;
-
 std::variant<std::string, int> concat_prefix(std::string name) {
   if (name.starts_with("a")) {
     return "User: " + name;
@@ -78,33 +76,36 @@ std::variant<std::string, int> decapitalize(std::string str) {
   }
 }
 
-template <typename Valid, typename Invalid>
-void print_variant(std::variant<Valid, Invalid> str) {
+void print_variant(std::variant<std::string, int> str) {
   if (str.index() == 1) {
-    std::cout << "I got an error value: " << std::get<Invalid>(str) << '\n';
+    std::cout << "I got an error value: " << std::get<int>(str) << '\n';
   } else {
-    for (auto v : std::get<Valid>(str)) {
+    for (auto v : std::get<std::string>(str)) {
       std::cout << v;
     }
     std::cout << '\n';
   }
 }
 
-template <typename Valid, typename Invalid, typename F>
-std::variant<Valid, Invalid> vbind(const std::variant<Valid, Invalid> &opt,
-                                   F f) {
+std::variant<std::string, int> vprint(int error) {
+  std::cout << "I got an error value: " << error << '\n';
+  return {};
+}
+
+std::variant<std::string, int>
+vbind(const std::variant<std::string, int> &opt,
+      std::function<std::variant<std::string, int>(std::string)> f) {
   if (opt.index() == 1) {
-    return std::get<Invalid>(opt);
+    return std::get<int>(opt);
   } else {
-    return f(std::get<Valid>(opt));
+    return f(std::get<std::string>(opt));
   }
 }
 
-template <typename Valid, typename Invalid, typename F>
-std::variant<Valid, Invalid> allbind(std::variant<Valid, Invalid> &opt,
-                                     std::initializer_list<F> fs) {
-  for (auto &f : fs) {
-    auto r = vbind(opt, f);
+template <class MapFn, class ValueType, class Fn>
+ValueType foldl(MapFn m, ValueType &opt, std::initializer_list<Fn> fns) {
+  for (auto &fn : fns) {
+    auto r = m(opt, fn);
     opt = r;
   }
   return opt;
