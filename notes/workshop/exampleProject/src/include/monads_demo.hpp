@@ -14,17 +14,6 @@ auto capitalize = [](std::string str) {
   return std::make_optional(str);
 };
 
-void functor() {
-  struct MyFunctor {
-  public:
-    int operator()(int x) { return x * 2; }
-  };
-
-  MyFunctor doubler;
-  int x = doubler(doubler(5));
-  std::cout << "doubler: " << x;
-}
-
 std::optional<std::string> transform_user(std::optional<std::string> name) {
   if (!name) {
     return {};
@@ -42,14 +31,12 @@ monadic_transform_user(std::optional<std::string> name = std::nullopt) {
 }
 
 void optional_monad() {
-  transform_user("Amar Lakshya");
+  transform_user("amar lakshya");
   mbind(monadic_transform_user("amar lakshya"), mprint);
 }
 
 void start() {
   std::cout << "\nMonads Demo:\n";
-  functor();
-  std::cout << "\n";
   optional_monad();
 }
 
