@@ -4,8 +4,6 @@
 namespace ranges_demo {
 using namespace helpers;
 
-void motivation() {}
-
 void concept_errors() {
   std::list<int> list{1, 2, 3, 4};
   // std::sort(list.begin(), list.end());
@@ -56,8 +54,6 @@ void sentinel_support() {
 
 void ranges_demo() {
   std::cout << "\nRanges Demo:\n";
-  motivation();
-  std::cout << "\n";
   concept_errors();
   std::cout << "\n";
   range_overloads();
