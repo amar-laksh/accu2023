@@ -81,9 +81,9 @@ void print_variant(std::variant<Valid, Invalid> str) {
   }
 }
 
-template <typename Valid, typename Invalid, typename F,
-          typename ReturnType = std::variant<Valid, Invalid>>
-ReturnType vbind(const std::variant<Valid, Invalid> &opt, F f) {
+template <typename Valid, typename Invalid, typename F>
+std::variant<Valid, Invalid> vbind(const std::variant<Valid, Invalid> &opt,
+                                   F f) {
   if (opt.index() == 1) {
     return std::get<Invalid>(opt);
   } else {
