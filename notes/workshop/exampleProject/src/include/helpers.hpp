@@ -68,7 +68,7 @@ std::variant<std::string, int> capitalize(std::string str) {
 }
 
 std::variant<std::string, int> decapitalize(std::string str) {
-  if (str.ends_with("a") || str.ends_with("A")) {
+  if (str.ends_with("A")) {
     std::transform(str.begin(), str.end(), str.begin(), ::tolower);
     return str;
   } else {
