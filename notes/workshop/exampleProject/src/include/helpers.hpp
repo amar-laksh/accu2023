@@ -79,6 +79,9 @@ std::variant<std::string, int> decapitalize(std::string str) {
 void print_variant(std::variant<std::string, int> str) {
   if (str.index() == 1) {
     std::cout << "I got an error value: " << std::get<int>(str) << '\n';
+    // throw std::runtime_error(
+    //     "I got an error value: " + std::to_string(std::get<int>(str)) +
+    //     '\n');
   } else {
     for (auto v : std::get<std::string>(str)) {
       std::cout << v;
