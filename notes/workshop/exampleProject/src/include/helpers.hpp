@@ -3,6 +3,7 @@
 #include <iostream>
 #include <list>
 #include <ranges>
+#include <variant>
 #include <vector>
 
 namespace helpers {
@@ -49,20 +50,44 @@ void print_view(std::ranges::view auto &&range, std::string const &msg) {
   std::cout << '\n';
 }
 
-std::optional<std::string> mprint(std::string range) {
-  for (auto v : range) {
-    std::cout << v;
+template <typename T> using optional = std::variant<T, int>;
+
+std::variant<std::string, int> concat_prefix(std::string name) {
+  if (name.starts_with("a")) {
+    return "User: " + name;
+  } else {
+    return -1;
   }
-  std::cout << '\n';
-  return {};
 }
 
-template <typename T, typename F>
-auto mbind(const std::optional<T> &opt, F f) -> decltype(f(opt.value())) {
-  if (opt) {
-    return f(opt.value());
+std::variant<std::string, int> capitalize(std::string str) {
+  if (str.ends_with("a")) {
+    std::transform(str.begin(), str.end(), str.begin(), ::toupper);
+    return str;
   } else {
-    return {};
+    return -2;
+  }
+}
+
+template <typename Valid, typename Invalid>
+void print_variant(std::variant<Valid, Invalid> str) {
+  if (str.index() == 1) {
+    std::cout << "I got an error value: " << std::get<Invalid>(str) << '\n';
+  } else {
+    for (auto v : std::get<Valid>(str)) {
+      std::cout << v;
+    }
+    std::cout << '\n';
+  }
+}
+
+template <typename Valid, typename Invalid, typename F,
+          typename ReturnType = std::variant<Valid, Invalid>>
+ReturnType vbind(const std::variant<Valid, Invalid> &opt, F f) {
+  if (opt.index() == 1) {
+    return std::get<Invalid>(opt);
+  } else {
+    return f(std::get<Valid>(opt));
   }
 }
 

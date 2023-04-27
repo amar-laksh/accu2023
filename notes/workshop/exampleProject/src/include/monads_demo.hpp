@@ -5,39 +5,33 @@ using namespace helpers;
 
 namespace views = std::ranges::views;
 
-auto concate_prefix = [](std::string name) {
-  return std::make_optional("User: " + name);
-};
-
-auto capitalize = [](std::string str) {
-  std::transform(str.begin(), str.end(), str.begin(), ::toupper);
-  return std::make_optional(str);
-};
-
-std::optional<std::string> transform_user(std::optional<std::string> name) {
-  if (!name) {
-    return {};
+std::variant<std::string, int>
+transform_user(std::variant<std::string, int> name) {
+  if (name.index() == 1) {
+    return -1;
   }
-  std::optional<std::string> user_str = concate_prefix(name.value());
-  if (!user_str) {
-    return {};
+  std::variant<std::string, int> user_str =
+      concat_prefix(std::get<std::string>(name));
+  if (user_str.index() == 1) {
+    return -2;
   }
-  return capitalize(user_str.value());
+  return capitalize(std::get<std::string>(user_str));
 }
 
-std::optional<std::string>
-monadic_transform_user(std::optional<std::string> name = std::nullopt) {
-  return mbind(mbind(name, concate_prefix), capitalize);
+std::variant<std::string, int>
+monadic_transform_user(std::variant<std::string, int> name) {
+  return vbind(vbind(name, concat_prefix), capitalize);
 }
 
-void optional_monad() {
-  transform_user("amar lakshya");
-  mbind(monadic_transform_user("amar lakshya"), mprint);
+void variant_monad() {
+  print_variant(monadic_transform_user("amar lakshya"));
+  print_variant(monadic_transform_user("mamar lakshya"));
+  print_variant(monadic_transform_user("amar"));
 }
 
 void start() {
   std::cout << "\nMonads Demo:\n";
-  optional_monad();
+  variant_monad();
 }
 
 } // namespace monads_demo
