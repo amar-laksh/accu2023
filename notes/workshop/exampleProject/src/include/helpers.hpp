@@ -69,6 +69,15 @@ std::variant<std::string, int> capitalize(std::string str) {
   }
 }
 
+std::variant<std::string, int> decapitalize(std::string str) {
+  if (str.ends_with("a") || str.ends_with("A")) {
+    std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+    return str;
+  } else {
+    return -2;
+  }
+}
+
 template <typename Valid, typename Invalid>
 void print_variant(std::variant<Valid, Invalid> str) {
   if (str.index() == 1) {
@@ -91,4 +100,13 @@ std::variant<Valid, Invalid> vbind(const std::variant<Valid, Invalid> &opt,
   }
 }
 
+template <typename Valid, typename Invalid, typename F>
+std::variant<Valid, Invalid> allbind(std::variant<Valid, Invalid> &opt,
+                                     std::initializer_list<F> fs) {
+  for (auto &f : fs) {
+    auto r = vbind(opt, f);
+    opt = r;
+  }
+  return opt;
+}
 }; // namespace helpers
