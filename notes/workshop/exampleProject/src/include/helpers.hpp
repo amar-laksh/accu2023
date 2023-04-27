@@ -49,4 +49,21 @@ void print_view(std::ranges::view auto &&range, std::string const &msg) {
   std::cout << '\n';
 }
 
+std::optional<std::string> mprint(std::string range) {
+  for (auto v : range) {
+    std::cout << v;
+  }
+  std::cout << '\n';
+  return {};
+}
+
+template <typename T, typename F>
+auto mbind(const std::optional<T> &opt, F f) -> decltype(f(opt.value())) {
+  if (opt) {
+    return f(opt.value());
+  } else {
+    return {};
+  }
+}
+
 }; // namespace helpers

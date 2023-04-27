@@ -52,7 +52,7 @@ void sentinel_support() {
   // print(v.begin(), std::unreachable_sentinel);
 }
 
-void ranges_demo() {
+void start() {
   std::cout << "\nRanges Demo:\n";
   concept_errors();
   std::cout << "\n";

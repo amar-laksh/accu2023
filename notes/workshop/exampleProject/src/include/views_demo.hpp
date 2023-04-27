@@ -41,7 +41,7 @@ void view_read_only() {
   print(v, "view after update:");
 }
 
-void views_demo() {
+void start() {
   std::cout << "\nViews Demo:\n";
   motivation();
   std::cout << "\n";
