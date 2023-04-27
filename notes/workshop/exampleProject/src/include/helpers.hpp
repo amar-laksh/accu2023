@@ -87,11 +87,6 @@ void print_variant(std::variant<std::string, int> str) {
   }
 }
 
-std::variant<std::string, int> vprint(int error) {
-  std::cout << "I got an error value: " << error << '\n';
-  return {};
-}
-
 std::variant<std::string, int>
 vbind(const std::variant<std::string, int> &opt,
       std::function<std::variant<std::string, int>(std::string)> f) {
