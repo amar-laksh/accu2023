@@ -1,27 +1,10 @@
 #pragma once
 #include "helpers.hpp"
 
+namespace ranges_demo {
 using namespace helpers;
 
-namespace views = std::ranges::views;
-void motivation() {
-
-  auto even = [](int n) { return n % 2 == 0; };
-  auto multiplyBy2 = [](int n) { return n * 2; };
-
-  std::vector<int> numbers = {1, 2, 3, 4, 5};
-  std::vector<int> evenNumbers;
-  std::copy_if(begin(numbers), end(numbers), std::back_inserter(evenNumbers),
-               even);
-  std::vector<int> results;
-  std::transform(begin(evenNumbers), end(evenNumbers),
-                 std::back_inserter(results), multiplyBy2);
-  print(results.begin(), results.end(), "iterator answer: ");
-
-  auto result =
-      views::iota(1, 5) | views::filter(even) | views::transform(multiplyBy2);
-  print(result, "ranges/views answer: ");
-}
+void motivation() {}
 
 void concept_errors() {
   std::list<int> list{1, 2, 3, 4};
@@ -72,6 +55,7 @@ void sentinel_support() {
 }
 
 void ranges_demo() {
+  std::cout << "\nRanges Demo:\n";
   motivation();
   std::cout << "\n";
   concept_errors();
@@ -83,3 +67,4 @@ void ranges_demo() {
   sentinel_support();
   std::cout << "\n";
 }
+} // namespace ranges_demo
