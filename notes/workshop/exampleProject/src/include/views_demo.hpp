@@ -47,7 +47,7 @@ std::vector<int> collection() { return {1,2,3,4,5,6}; };
 void view_const() {
   std::vector<int> vec = collection();
   print(vec, "original vector:");
-  const auto v = vec |  views::drop(2); // drop_view<ref_view<vector<int>>
+  auto const v = vec |  views::drop(2); // drop_view<ref_view<vector<int>>
   print(v, "const view before update:");
   *v.begin() = 42;
   print(v, "const view after update:");

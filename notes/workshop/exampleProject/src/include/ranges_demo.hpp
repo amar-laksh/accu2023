@@ -31,6 +31,8 @@ void projections_support() {
             [](UnitedKingdom const &x, UnitedKingdom const &y) {
               return x.rank < y.rank;
             });
+  // std::ranges::sort(uk, std::ranges::less{},
+  //                   [](UnitedKingdom const &uk) { return uk.rank; });
   // std::ranges::sort(uk, {}, &UnitedKingdom::rank);
 
   print_country(uk, "sorted countries:");
