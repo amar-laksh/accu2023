@@ -35,10 +35,21 @@ void view_operation() {
 void view_read_only() {
   std::vector vec{1, 2, 3, 4, 5, 6};
   print(vec, "original vector:");
-  auto v = vec | std::views::reverse | std::views::drop(2);
+  auto v = vec | views::reverse | views::drop(2);
   print(v, "view before update:");
   *v.begin() = 42;
   print(v, "view after update:");
+}
+
+std::vector<int> collection() { return {1,2,3,4,5,6}; };
+
+void view_const() {
+  std::vector<int> vec = collection();
+  print(vec, "original vector:");
+  const auto v = vec |  views::drop(2); // drop_view<ref_view<vector<int>>
+  print(v, "const view before update:");
+  *v.begin() = 42;
+  print(v, "const view after update:");
 }
 
 void start() {
@@ -48,6 +59,9 @@ void start() {
   view_operation();
   std::cout << "\n";
   view_read_only();
+  std::cout << "\n";
+  view_const();
+
 }
 
 } // namespace views_demo

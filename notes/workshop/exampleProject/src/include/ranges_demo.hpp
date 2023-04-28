@@ -44,7 +44,7 @@ void sentinel_support() {
   std::vector v{3, 2, 1, 4, -1, 6, 5};
   print(v.begin(), v.end(), "unsorted:");
   std::ranges::sort(v);
-  print(v.begin(), v.end(), "sorted:");
+  print(v, "sorted:");
   v = {3, 2, 1, 4, -1, 6, 5};
   std::ranges::sort(v.begin(), EndValue<5>{});
   print(v.begin(), v.end(), "sort with sentinel at 5:");
