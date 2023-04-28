@@ -1,5 +1,6 @@
 #pragma once
 #include "helpers.hpp"
+#include <list>
 
 namespace ranges_demo {
 using namespace helpers;
@@ -17,7 +18,7 @@ void range_overloads() {
 
   // auto result =
   //     std::ranges::all_of(getData(), [](const int i) { return i < 3; });
-  // std::cout << "all_of result is: " << result << "\n";
+  std::cout << "all_of result is: " << result << "\n";
 }
 
 void projections_support() {

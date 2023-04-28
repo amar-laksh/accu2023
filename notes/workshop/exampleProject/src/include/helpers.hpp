@@ -1,10 +1,8 @@
 #pragma once
 #include <algorithm>
 #include <iostream>
-#include <list>
 #include <ranges>
 #include <variant>
-#include <vector>
 
 namespace helpers {
 namespace views = std::views;
