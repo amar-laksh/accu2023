@@ -35,10 +35,11 @@ void view_operation() {
 void view_read_only() {
   std::vector vec{1, 2, 3, 4, 5, 6};
   print(vec, "original vector:");
-  auto v = vec | views::reverse | views::drop(2);
+  auto v = vec | views::drop(2);
   print(v, "view before update:");
   *v.begin() = 42;
   print(v, "view after update:");
+  // print(vec, "vector after update:");
 }
 
 std::vector<int> collection() { return {1,2,3,4,5,6}; };
